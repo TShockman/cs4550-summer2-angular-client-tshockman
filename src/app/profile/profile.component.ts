@@ -2,6 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import {UserServiceClient} from '../services/user.service.client';
 import {Router} from '@angular/router';
 
+interface User {
+  username: String;
+  password: String;
+  firstName: String;
+  lastName: String;
+  role: String;
+  phone: String;
+  email: String;
+  address: String;
+}
+
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -9,7 +20,7 @@ import {Router} from '@angular/router';
 })
 export class ProfileComponent implements OnInit {
 
-  currentUser = {};
+  currentUser: User;
 
   constructor(private router: Router, private userServiceClient: UserServiceClient) { }
 
