@@ -43,6 +43,9 @@
       <label for="updateMaxEnrollment">Max Enrollment</label>
       <input id="updateMaxEnrollment" [(ngModel)]="selectedSection.maxEnrollment" type="number"/>
       <br/>
+      <label for="updateFreeSeats">Free Seats</label>
+      <input id="updateFreeSeats" [(ngModel)]="selectedSection.freeSeats" type="number" disabled/>
+      <br/>
       <button (click)="updateSection()">Update Section</button>
       <br/>
       <button (click)="deleteSection()">Delete Section</button>

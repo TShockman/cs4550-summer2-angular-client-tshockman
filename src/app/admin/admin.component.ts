@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {CourseServiceClient} from '../services/course.service.client';
 import {SectionServiceClient} from '../services/section.service.client';
 import {Course, Section} from '../app.types';
+import {Router} from '@angular/router';
+import {UserServiceClient} from '../services/user.service.client';
 
 @Component({
   selector: 'app-admin',
@@ -16,9 +18,22 @@ export class AdminComponent implements OnInit {
   newSectionTitle: String = '';
   newMaxEnrollment: String = '';
 
-  constructor(private courseServiceClient: CourseServiceClient, private sectionServiceClient: SectionServiceClient) { }
+  constructor(
+    private courseServiceClient: CourseServiceClient,
+    private sectionServiceClient: SectionServiceClient,
+    private router: Router,
+    private userServiceClient: UserServiceClient) { }
 
   ngOnInit() {
+    this.userServiceClient.getProfile()
+      .then(user => {
+        if (!user) {
+          this.router.navigate(['login']);
+        }
+        if (user.role !== 'ADMIN') {
+          this.router.navigate(['profile']);
+        }
+      });
     this.courseServiceClient.getAllCourses()
       .then(courses => {
         this.courses = courses;
