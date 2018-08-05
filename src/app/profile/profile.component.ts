@@ -10,13 +10,16 @@ import {User} from '../app.types';
 })
 export class ProfileComponent implements OnInit {
 
-  currentUser: User;
+  currentUser: User = <User>{};
 
   constructor(private router: Router, private userServiceClient: UserServiceClient) { }
 
   ngOnInit() {
     this.userServiceClient.getProfile()
       .then(user => {
+        if (!user) {
+          return this.router.navigate(['login']);
+        }
         this.currentUser = user;
       });
   }

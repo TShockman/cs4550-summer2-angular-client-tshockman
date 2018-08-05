@@ -10,9 +10,9 @@ import {Course, Section} from '../app.types';
 })
 export class AdminComponent implements OnInit {
   courses: Array<Course> = [];
-  selectedCourse: Course = null;
+  selectedCourse: Course = <Course>{};
   sections: Array<Section> = [];
-  selectedSection: Section = null;
+  selectedSection: Section = <Section>{};
   newSectionTitle: String = '';
   newMaxEnrollment: String = '';
 
@@ -66,7 +66,7 @@ export class AdminComponent implements OnInit {
   deleteSection() {
     this.sectionServiceClient.deleteSection(this.selectedSection._id)
       .then(() => {
-        this.selectedSection = null;
+        this.selectedSection = <Section>{};
         return this.sectionServiceClient.getSectionsForCourseId(this.selectedCourse.id);
       })
       .then(sections => {

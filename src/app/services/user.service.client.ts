@@ -29,7 +29,12 @@ export class UserServiceClient {
     return fetch(PROFILE_API_URL, {
       method: 'get',
       credentials: 'include'
-    }).then(response => response.json());
+    }).then(response => {
+      if (response.status === 200) {
+        return response.json();
+      }
+      return null;
+    });
   }
 
   deleteUser() {

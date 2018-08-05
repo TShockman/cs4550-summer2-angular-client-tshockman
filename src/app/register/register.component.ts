@@ -18,6 +18,12 @@ export class RegisterComponent implements OnInit {
   constructor(private router: Router, private userServiceClient: UserServiceClient) { }
 
   ngOnInit() {
+    this.userServiceClient.getProfile()
+      .then(user => {
+        if (user) {
+          this.router.navigate(['profile']);
+        }
+      });
   }
 
   register() {
