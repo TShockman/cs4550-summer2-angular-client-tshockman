@@ -1,17 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {UserServiceClient} from '../services/user.service.client';
 import {Router} from '@angular/router';
-
-interface User {
-  username: String;
-  password: String;
-  firstName: String;
-  lastName: String;
-  role: String;
-  phone: String;
-  email: String;
-  address: String;
-}
+import {User} from '../app.types';
 
 @Component({
   selector: 'app-profile',

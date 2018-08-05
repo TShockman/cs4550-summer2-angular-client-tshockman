@@ -25,4 +25,4 @@
 
 <button (click)="deleteUser()">Delete Account</button>
 <button (click)="logout()">Logout</button>
-<a *ngIf="currentUser.role === 'ADMIN'">Admin Page</a>
+<a routerLink="/admin" *ngIf="currentUser.role === 'ADMIN'">Admin Page</a>

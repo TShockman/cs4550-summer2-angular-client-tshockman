@@ -1,0 +1,53 @@
+<link rel="stylesheet" href="../../styles.css">
+<div class="row">
+  <div class="col-4">
+    <h2>Courses</h2>
+    <ul class="list-group">
+      <li (click)="selectCourse(course)"
+          [ngClass]="{'active': course.id === selectedCourse.id}"
+          *ngFor="let course of courses"
+          class="list-group-item">
+        {{course.title}}
+      </li>
+    </ul>
+  </div>
+  <div class="col-4">
+    <h2>Sections</h2>
+    <ul class="list-group">
+      <li *ngIf="selectedCourse.id" class="list-group-item">
+        <label for="newSectionTitle">Section Title</label>
+        <input id="newSectionTitle" placeholder="Section A" [(ngModel)]="newSectionTitle"/>
+        <br/>
+        <label for="newMaxEnrollment">Max Enrollment</label>
+        <input id="newMaxEnrollment" placeholder="15" [(ngModel)]="newMaxEnrollment" type="number"/>
+        <br/>
+        <button (click)="addSection()">Create Section</button>
+      </li>
+      <li (click)="selectSection(section)"
+          [ngClass]="{'active': section._id === selectedSection._id}"
+          *ngFor="let section of sections"
+          class="list-group-item">
+        {{section.title}}
+      </li>
+    </ul>
+  </div>
+  <div class="col-4">
+    <h2 *ngIf="!selectedSection._id">
+      Select or Create a Section
+    </h2>
+    <div *ngIf="selectedSection._id">
+      <h2>Edit {{selectedSection.title}}</h2>
+
+      <label for="updateSectionTitle">Section Title</label>
+      <input id="updateSectionTitle" [(ngModel)]="selectedSection.title"/>
+      <br/>
+      <label for="updateMaxEnrollment">Max Enrollment</label>
+      <input id="updateMaxEnrollment" [(ngModel)]="selectedSection.maxEnrollment" type="number"/>
+      <br/>
+      <button (click)="updateSection()">Update Section</button>
+      <br/>
+      <button (click)="deleteSection()">Delete Section</button>
+
+    </div>
+  </div>
+</div>

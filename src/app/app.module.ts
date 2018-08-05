@@ -9,6 +9,9 @@ import { ProfileComponent } from './profile/profile.component';
 import { RegisterComponent } from './register/register.component';
 import { routing } from './app.routing';
 import {UserServiceClient} from './services/user.service.client';
+import { AdminComponent } from './admin/admin.component';
+import {CourseServiceClient} from './services/course.service.client';
+import {SectionServiceClient} from './services/section.service.client';
 
 @NgModule({
   declarations: [
@@ -16,7 +19,8 @@ import {UserServiceClient} from './services/user.service.client';
     CourseManagerComponent,
     LoginComponent,
     ProfileComponent,
-    RegisterComponent
+    RegisterComponent,
+    AdminComponent
   ],
   imports: [
     routing,
@@ -24,7 +28,9 @@ import {UserServiceClient} from './services/user.service.client';
     FormsModule
   ],
   providers: [
-    UserServiceClient
+    UserServiceClient,
+    CourseServiceClient,
+    SectionServiceClient
   ],
   bootstrap: [AppComponent]
 })
