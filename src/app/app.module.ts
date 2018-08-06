@@ -12,6 +12,7 @@ import {UserServiceClient} from './services/user.service.client';
 import { AdminComponent } from './admin/admin.component';
 import {CourseServiceClient} from './services/course.service.client';
 import {SectionServiceClient} from './services/section.service.client';
+import { HomepageComponent } from './homepage/homepage.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import {SectionServiceClient} from './services/section.service.client';
     LoginComponent,
     ProfileComponent,
     RegisterComponent,
-    AdminComponent
+    AdminComponent,
+    HomepageComponent
   ],
   imports: [
     routing,

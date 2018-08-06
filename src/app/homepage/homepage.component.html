@@ -1,0 +1,24 @@
+<div *ngIf="currentUser">
+  Welcome {{currentUser.username}}!
+  <div class="row">
+    <div class="col-md-8">
+      <ul class="list-group">
+        <li *ngFor="let section of currentUser.sections">
+          {{section.title}}
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div *ngFor="let course of courses"
+       class="col-md-3 card">
+    <h4 class="card-title">{{course.title}}</h4>
+    <div class="card-body p-1">
+      <p class="card-text">Lorem Ipsum</p>
+      <a href="#" class="btn btn-primary">View Course</a>
+      <a href="#" class="btn btn-primary">Enroll</a>
+    </div>
+  </div>
+</div>
