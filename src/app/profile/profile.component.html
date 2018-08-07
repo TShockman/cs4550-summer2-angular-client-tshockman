@@ -1,28 +1,47 @@
 <h2>Welcome {{currentUser.username}} !</h2>
+<div class="row">
+  <div class="col-6">
+    <div>
+      <h3>Update Information</h3>
+      <label for="username">Username</label>
+      <input [(ngModel)]="currentUser.username" id="username" placeholder="jane_doe"/>
+      <br/>
+      <label for="firstName">First Name</label>
+      <input [(ngModel)]="currentUser.firstName" type="text" id="firstName" placeholder="Jane"/>
+      <br/>
+      <label for="lastName">Last Name</label>
+      <input [(ngModel)]="currentUser.lastName" type="text" id="lastName" placeholder="Doe"/>
+      <br/>
+      <label for="address">Address</label>
+      <textarea [(ngModel)]="currentUser.address" id="address" placeholder="123 E 4th St"></textarea>
+      <br/>
+      <label for="email">Email Address</label>
+      <input [(ngModel)]="currentUser.email" type="email" id="email" placeholder="jane@doe.com"/>
+      <br/>
+      <label for="phone">Phone Number</label>
+      <input [(ngModel)]="currentUser.phone" type="text" id="phone" placeholder="800-555-1234"/>
+      <br/>
+      <button (click)="updateProfile()">Update Profile</button>
+    </div>
 
-<div>
-  <h3>Update Information</h3>
-  <label for="username">Username</label>
-  <input [(ngModel)]="currentUser.username" id="username" placeholder="jane_doe"/>
-  <br/>
-  <label for="firstName">First Name</label>
-  <input [(ngModel)]="currentUser.firstName" type="text" id="firstName" placeholder="Jane"/>
-  <br/>
-  <label for="lastName">Last Name</label>
-  <input [(ngModel)]="currentUser.lastName" type="text" id="lastName" placeholder="Doe"/>
-  <br/>
-  <label for="address">Address</label>
-  <textarea [(ngModel)]="currentUser.address" id="address" placeholder="123 E 4th St"></textarea>
-  <br/>
-  <label for="email">Email Address</label>
-  <input [(ngModel)]="currentUser.email" type="email" id="email" placeholder="jane@doe.com"/>
-  <br/>
-  <label for="phone">Phone Number</label>
-  <input [(ngModel)]="currentUser.phone" type="text" id="phone" placeholder="800-555-1234"/>
-  <br/>
-  <button (click)="updateProfile()">Update Profile</button>
+    <button (click)="deleteUser()">Delete Account</button>
+    <button (click)="logout()">Logout</button>
+    <a routerLink="/admin" *ngIf="currentUser.role === 'ADMIN'">Admin Page</a>
+  </div>
+
+  <div class="col-6">
+    <ul *ngIf="currentUser" class="list-group">
+      <li *ngFor="let section of currentUser.sections"
+          class="list-group-item">
+        <div class="row">
+          <div class="col-md-2">Section Title: {{section.title}}</div>
+          <div class="col-md-2">Max Seats: {{section.maxEnrollment}}</div>
+          <div class="col-md-2">Free Seats: {{section.freeSeats}}</div>
+          <div class="col-md-2">
+            <button (click)="unenroll(section)" class="btn btn-primary">Unenroll</button>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
 </div>
-
-<button (click)="deleteUser()">Delete Account</button>
-<button (click)="logout()">Logout</button>
-<a routerLink="/admin" *ngIf="currentUser.role === 'ADMIN'">Admin Page</a>

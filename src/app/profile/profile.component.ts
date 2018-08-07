@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {UserServiceClient} from '../services/user.service.client';
 import {Router} from '@angular/router';
 import {User} from '../app.types';
+import {EnrollmentServiceClient} from '../services/enrollment.service.client';
 
 @Component({
   selector: 'app-profile',
@@ -12,9 +13,15 @@ export class ProfileComponent implements OnInit {
 
   currentUser: User = <User>{};
 
-  constructor(private router: Router, private userServiceClient: UserServiceClient) { }
+  constructor(private router: Router,
+              private userServiceClient: UserServiceClient,
+              private enrollmentServiceClient: EnrollmentServiceClient) { }
 
   ngOnInit() {
+    this.fetchData();
+  }
+
+  fetchData = () => {
     this.userServiceClient.getProfile()
       .then(user => {
         if (!user) {
@@ -46,6 +53,11 @@ export class ProfileComponent implements OnInit {
         this.currentUser = newUser;
         alert('User information updated');
       });
+  }
+
+  unenroll(section) {
+    this.enrollmentServiceClient.unenroll(this.currentUser, section)
+      .then(this.fetchData);
   }
 
 }

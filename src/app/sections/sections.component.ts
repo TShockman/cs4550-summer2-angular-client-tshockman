@@ -47,7 +47,6 @@ export class SectionsComponent implements OnInit {
       .then(this.fetchData);
   }
 
-
   isEnrolled(section) {
     return this.currentUser.sections.filter(s => s._id === section._id).length;
   }
