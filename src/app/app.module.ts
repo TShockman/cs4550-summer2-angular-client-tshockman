@@ -14,6 +14,8 @@ import {CourseServiceClient} from './services/course.service.client';
 import {SectionServiceClient} from './services/section.service.client';
 import { HomepageComponent } from './homepage/homepage.component';
 import { CourseComponent } from './course/course.component';
+import { SectionsComponent } from './sections/sections.component';
+import {EnrollmentServiceClient} from './services/enrollment.service.client';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,8 @@ import { CourseComponent } from './course/course.component';
     RegisterComponent,
     AdminComponent,
     HomepageComponent,
-    CourseComponent
+    CourseComponent,
+    SectionsComponent
   ],
   imports: [
     routing,
@@ -34,7 +37,8 @@ import { CourseComponent } from './course/course.component';
   providers: [
     UserServiceClient,
     CourseServiceClient,
-    SectionServiceClient
+    SectionServiceClient,
+    EnrollmentServiceClient
   ],
   bootstrap: [AppComponent]
 })
