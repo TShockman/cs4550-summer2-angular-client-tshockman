@@ -7,4 +7,9 @@ export class CourseServiceClient {
     return fetch(COURSE_API_URL)
       .then(response => response.json());
   }
+
+  getCourse(cid) {
+    return fetch(`${COURSE_API_URL}/${cid}`)
+      .then(response => response.json());
+  }
 }

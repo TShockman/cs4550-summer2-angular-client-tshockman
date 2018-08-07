@@ -4,13 +4,15 @@ import {ProfileComponent} from './profile/profile.component';
 import {RegisterComponent} from './register/register.component';
 import {AdminComponent} from './admin/admin.component';
 import {HomepageComponent} from './homepage/homepage.component';
+import {CourseComponent} from './course/course.component';
 
 const appRoutes: Routes = [
   {path: '', component: HomepageComponent},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'profile', component: ProfileComponent},
-  {path: 'admin', component: AdminComponent}
+  {path: 'admin', component: AdminComponent},
+  {path: 'course/:cid', component: CourseComponent}
 ];
 
 export const routing = RouterModule.forRoot(appRoutes);

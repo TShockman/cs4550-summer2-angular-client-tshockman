@@ -13,6 +13,7 @@ import { AdminComponent } from './admin/admin.component';
 import {CourseServiceClient} from './services/course.service.client';
 import {SectionServiceClient} from './services/section.service.client';
 import { HomepageComponent } from './homepage/homepage.component';
+import { CourseComponent } from './course/course.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { HomepageComponent } from './homepage/homepage.component';
     ProfileComponent,
     RegisterComponent,
     AdminComponent,
-    HomepageComponent
+    HomepageComponent,
+    CourseComponent
   ],
   imports: [
     routing,
