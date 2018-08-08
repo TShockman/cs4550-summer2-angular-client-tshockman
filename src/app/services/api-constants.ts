@@ -10,3 +10,4 @@ export const STUDENT_API_URL = `${NODE_API_URL}/student`;
 
 export const JAVA_API_URL = 'https://course-manager-shockman.herokuapp.com/api';
 export const COURSE_API_URL = `${JAVA_API_URL}/course`;
+export const LESSON_API_URL = `${JAVA_API_URL}/lesson`;

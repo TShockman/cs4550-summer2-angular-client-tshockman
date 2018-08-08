@@ -13,6 +13,7 @@ import {EnrollmentServiceClient} from '../services/enrollment.service.client';
 export class SectionsComponent implements OnInit {
   sections: Array<Section> = null;
   currentUser: User = null;
+  courseId: Number = null;
 
   constructor(private sectionServiceClient: SectionServiceClient,
               private activatedRoute: ActivatedRoute,
@@ -25,7 +26,8 @@ export class SectionsComponent implements OnInit {
   }
 
   fetchData = () => {
-    this.sectionServiceClient.getSectionsForCourseId(this.activatedRoute.snapshot.params['cid'])
+    this.courseId = this.activatedRoute.snapshot.params['cid'];
+    this.sectionServiceClient.getSectionsForCourseId(this.courseId)
       .then(sections => {
         console.log(JSON.stringify(sections, null, 2));
         this.sections = sections;

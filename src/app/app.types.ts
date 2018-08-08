@@ -12,7 +12,7 @@ export interface Section {
 }
 
 export interface User {
-  id: String;
+  _id: String;
   username: String;
   password: String;
   firstName: String;
@@ -24,3 +24,24 @@ export interface User {
   sections: Array<Section>;
 }
 
+export interface Module {
+  id: String;
+  title: String;
+}
+
+export interface Lesson {
+  id: String;
+  title: String;
+}
+
+export interface Widget {
+  id: String;
+  name: String;
+  ordering: Number;
+  text: String;
+  type: String;
+  size: Number;
+  href: String;
+  src: String;
+  listType: String;
+}

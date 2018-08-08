@@ -1,0 +1,12 @@
+<ng-container [ngSwitch]="widget.listType">
+  <ul *ngSwitchCase="'UNORDERED'">
+    <li *ngFor="let item of widget.text.split('\n')">
+      {{item}}
+    </li>
+  </ul>
+  <ol *ngSwitchCase="'ORDERED'">
+    <li *ngFor="let item of widget.text.split('\n')">
+      {{item}}
+    </li>
+  </ol>
+</ng-container>

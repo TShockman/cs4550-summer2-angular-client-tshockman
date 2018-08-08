@@ -1,14 +1,50 @@
 <h2>{{course.title}}</h2>
 
-<div class="row">
-  <div class="col-3">
-    <a routerLink="sections">Enroll</a>
+<br/>
+
+<div *ngIf="currentUser && currentUser.role === 'STUDENT' && course && course.id">
+  <div class="row">
+    <div class="col">
+      <a routerLink="/course/{{course.id}}/sections" class="btn btn-primary">View Sections</a>
+    </div>
   </div>
 </div>
 
-<div class="row">
-  <div class="col-4">Modules</div>
-  <div class="col-8">Lessons</div>
-</div>
 
-{{courseString}}
+<div class="row">
+  <div class="col-4">
+    <h3>Modules</h3>
+    <ul class="list-group">
+      <li *ngFor="let module of modules"
+          class="list-group-item pointer"
+          (click)="selectModule(module.id)"
+          [ngClass]="{'active': module.id === selectedModuleId}">
+        {{module.title}}
+      </li>
+    </ul>
+  </div>
+  <div class="col-8">
+    <h3>Lessons</h3>
+    <ul class="nav nav-pills">
+      <li *ngFor="let lesson of lessons"
+          class="nav-item nav-link pointer"
+          (click)="selectLesson(lesson.id)"
+          [ngClass]="{'active': lesson.id === selectedLessonId}">
+          {{lesson.title}}
+      </li>
+    </ul>
+    <ul class="list-group">
+      <li *ngFor="let widget of widgets"
+          class="list-group-item"
+      >
+        <ng-container [ngSwitch]="widget.type">
+          <app-widget-heading *ngSwitchCase="'HEADING'" [widget]="widget"></app-widget-heading>
+          <app-widget-paragraph *ngSwitchCase="'PARAGRAPH'" [widget]="widget"></app-widget-paragraph>
+          <app-widget-list *ngSwitchCase="'LIST'" [widget]="widget"></app-widget-list>
+          <app-widget-link *ngSwitchCase="'LINK'" [widget]="widget"></app-widget-link>
+          <app-widget-img *ngSwitchCase="'IMAGE'" [widget]="widget"></app-widget-img>
+        </ng-container>
+      </li>
+    </ul>
+  </div>
+</div>
