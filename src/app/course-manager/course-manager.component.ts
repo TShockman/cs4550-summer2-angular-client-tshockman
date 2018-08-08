@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CourseManagerComponent implements OnInit {
 
+  isCollapsed: Boolean = true;
+
   constructor() { }
 
   ngOnInit() {

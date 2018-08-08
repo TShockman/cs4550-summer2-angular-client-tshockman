@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {STUDENT_API_URL} from './api-constants';
+import {parseResponse, STUDENT_API_URL} from './api-constants';
 
 @Injectable()
 export class EnrollmentServiceClient {
@@ -24,6 +24,6 @@ export class EnrollmentServiceClient {
       method: 'GET',
       credentials: 'include'
     })
-      .then(response => response.json());
+      .then(parseResponse);
   }
 }

@@ -1,11 +1,13 @@
 <h1>Login</h1>
 
-<div>
-  <label for="username">Username</label>
-  <input [(ngModel)]="username" id="username" placeholder="..."/>
-  <br/>
-  <label for="password">Password</label>
-  <input [(ngModel)]="password" type="password" id="password" placeholder="******"/>
-  <br/>
-  <button (click)="login()">Login</button>
+<div class="border">
+  <div class="form-group">
+    <label for="username">Username</label>
+    <input [(ngModel)]="username" id="username" placeholder="..." class="form-control"/>
+  </div>
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input [(ngModel)]="password" type="password" id="password" placeholder="******" class="form-control"/>
+  </div>
+  <button class="btn btn-primary" (click)="login()">Login</button>
 </div>

@@ -1,0 +1,14 @@
+.course-grid {
+}
+
+.course-grid-item {
+  height: 150px;
+  padding-top: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.course-title {
+  overflow: hidden;
+}

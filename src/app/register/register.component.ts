@@ -50,7 +50,13 @@ export class RegisterComponent implements OnInit {
       role: this.role
     };
     this.userServiceClient.register(user)
-      .then(u => this.router.navigate(['profile']));
+      .then(u => {
+        if (u) {
+          this.router.navigate(['profile']);
+        } else {
+          return alert('Registration failed');
+        }
+      });
   }
 
 }

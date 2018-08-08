@@ -1,32 +1,60 @@
-<h2>Welcome {{currentUser.username}} !</h2>
+
+<h2><strong>Welcome {{currentUser.username}}!</strong></h2>
+
+<div class="row">
+  <div class="col"><button (click)="logout()" class="btn btn-warning">Logout</button></div>
+  <div class="col"><button (click)="deleteUser()" class="btn btn-danger">Delete Account</button></div>
+  <div class="col" *ngIf="currentUser.role === 'ADMIN'"><a routerLink="/admin" class="btn btn-primary">Admin Page</a>
+  </div>
+</div>
+
+<hr/>
+
 <div class="row">
   <div class="col-3">
-    <div>
-      <h3>Update Information</h3>
-      <label for="username">Username</label>
-      <input [(ngModel)]="currentUser.username" id="username" placeholder="jane_doe"/>
-      <br/>
-      <label for="firstName">First Name</label>
-      <input [(ngModel)]="currentUser.firstName" type="text" id="firstName" placeholder="Jane"/>
-      <br/>
-      <label for="lastName">Last Name</label>
-      <input [(ngModel)]="currentUser.lastName" type="text" id="lastName" placeholder="Doe"/>
-      <br/>
-      <label for="address">Address</label>
-      <textarea [(ngModel)]="currentUser.address" id="address" placeholder="123 E 4th St"></textarea>
-      <br/>
-      <label for="email">Email Address</label>
-      <input [(ngModel)]="currentUser.email" type="email" id="email" placeholder="jane@doe.com"/>
-      <br/>
-      <label for="phone">Phone Number</label>
-      <input [(ngModel)]="currentUser.phone" type="text" id="phone" placeholder="800-555-1234"/>
-      <br/>
-      <button (click)="updateProfile()">Update Profile</button>
+    <div class="border">
+      <h3><strong>Update Profile</strong></h3>
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input [(ngModel)]="currentUser.username" id="username" placeholder="jane_doe" class="form-control"/>
+      </div>
+      <div class="form-group">
+        <label for="firstName">First Name</label>
+        <input [(ngModel)]="currentUser.firstName" type="text" id="firstName" placeholder="Jane" class="form-control"/>
+      </div>
+      <div class="form-group">
+        <label for="lastName">Last Name</label>
+        <input [(ngModel)]="currentUser.lastName" type="text" id="lastName" placeholder="Doe" class="form-control"/>
+      </div>
+      <div class="form-group">
+        <label for="address">Address</label>
+        <textarea [(ngModel)]="currentUser.address" id="address" placeholder="123 E 4th St" class="form-control"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input [(ngModel)]="currentUser.email" type="email" id="email" placeholder="jane@doe.com" class="form-control"/>
+      </div>
+      <div class="form-group">
+        <label for="phone">Phone Number</label>
+        <input [(ngModel)]="currentUser.phone" type="text" id="phone" placeholder="800-555-1234" class="form-control"/>
+      </div>
+      <button (click)="updateProfile()" class="btn btn-primary">Update Profile</button>
     </div>
 
-    <button (click)="deleteUser()">Delete Account</button>
-    <button (click)="logout()">Logout</button>
-    <a routerLink="/admin" *ngIf="currentUser.role === 'ADMIN'">Admin Page</a>
+    <hr/>
+
+    <div class="border">
+      <h3><strong>Change Password</strong></h3>
+      <div class="form-group">
+        <label for="newPassword">New Password</label>
+        <input [(ngModel)]="newPassword" type="password" id="newPassword" placeholder="*******" class="form-control"/>
+      </div>
+      <div class="form-group">
+        <label for="newPasswordConfirm">New Password Confirm</label>
+        <input [(ngModel)]="newPasswordConfirm" type="password" id="newPasswordConfirm" placeholder="*******" class="form-control"/>
+      </div>
+      <button (click)="changePassword()" class="btn btn-primary">Change Password</button>
+    </div>
   </div>
 
   <div class="col-9">

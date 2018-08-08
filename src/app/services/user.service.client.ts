@@ -1,5 +1,13 @@
 import {Injectable} from '@angular/core';
-import {USER_API_URL, LOGIN_API_URL, PROFILE_API_URL, REGISTER_API_URL, LOGOUT_API_URL} from './api-constants';
+import {
+  USER_API_URL,
+  LOGIN_API_URL,
+  PROFILE_API_URL,
+  REGISTER_API_URL,
+  LOGOUT_API_URL,
+  PASSWORD_API_URL,
+  parseResponse
+} from './api-constants';
 
 @Injectable()
 export class UserServiceClient {
@@ -11,7 +19,7 @@ export class UserServiceClient {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(user)
-    }).then(response => response.json());
+    }).then(parseResponse);
   }
 
   register(user) {
@@ -22,19 +30,14 @@ export class UserServiceClient {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(user)
-    }).then(response => response.json());
+    }).then(parseResponse);
   }
 
   getProfile() {
     return fetch(PROFILE_API_URL, {
       method: 'get',
       credentials: 'include'
-    }).then(response => {
-      if (response.status === 200) {
-        return response.json();
-      }
-      return null;
-    });
+    }).then(parseResponse);
   }
 
   deleteUser() {
@@ -59,7 +62,18 @@ export class UserServiceClient {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(user)
-    }).then(response => response.json());
+    }).then(parseResponse);
+  }
+
+  updatePassword(user) {
+    return fetch(PASSWORD_API_URL, {
+      method: 'put',
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(user)
+    }).then(parseResponse);
   }
 }
 

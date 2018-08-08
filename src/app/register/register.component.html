@@ -1,26 +1,34 @@
 <h1>Register</h1>
 
 <div>
-  <label for="username">Username</label>
-  <input [(ngModel)]="username" id="username" placeholder="jane_doe"/>
-  <br/>
-  <label for="password">Password</label>
-  <input [(ngModel)]="password" type="password" id="password" placeholder="******"/>
-  <br/>
-  <label for="passwordConfirm">Confirm Password</label>
-  <input [(ngModel)]="passwordConfirm" type="password" id="passwordConfirm" placeholder="******"/>
-  <br/>
-  <label for="firstName">First Name</label>
-  <input [(ngModel)]="firstName" type="text" id="firstName" placeholder="Jane"/>
-  <br/>
-  <label for="lastName">Last Name</label>
-  <input [(ngModel)]="lastName" type="text" id="lastName" placeholder="Doe"/>
-  <br/>
-  <label for="role">Role</label>
-  <select [(ngModel)]="role" id="role">
-    <option value="STUDENT">Student</option>
-    <option value="ADMIN">Admin</option>
-  </select>
-  <br/>
-  <button (click)="register()">Register</button>
+  <div class="border">
+    <div class="form-group">
+      <label for="username">Username</label>
+      <input [(ngModel)]="username" id="username" placeholder="jane_doe" class="form-control"/>
+    </div>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input [(ngModel)]="password" type="password" id="password" placeholder="******" class="form-control"/>
+    </div>
+    <div class="form-group">
+      <label for="passwordConfirm">Confirm Password</label>
+      <input [(ngModel)]="passwordConfirm" type="password" id="passwordConfirm" placeholder="******" class="form-control"/>
+    </div>
+    <div class="form-group">
+      <label for="firstName">First Name</label>
+      <input [(ngModel)]="firstName" type="text" id="firstName" placeholder="Jane" class="form-control"/>
+    </div>
+    <div class="form-group">
+      <label for="lastName">Last Name</label>
+      <input [(ngModel)]="lastName" type="text" id="lastName" placeholder="Doe" class="form-control"/>
+    </div>
+    <div class="form-group">
+      <label for="role">Role</label>
+      <select [(ngModel)]="role" id="role" class="form-control">
+        <option value="STUDENT">Student</option>
+        <option value="ADMIN">Admin</option>
+      </select>
+    </div>
+    <button class="btn btn-primary" (click)="register()">Register</button>
+  </div>
 </div>

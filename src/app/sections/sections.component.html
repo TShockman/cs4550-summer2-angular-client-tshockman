@@ -14,7 +14,7 @@
           <button (click)="enroll(section)" class="btn btn-primary" [disabled]="!section.freeSeats">Enroll</button>
         </div>
         <div [hidden]="!isEnrolled(section)" class="col-md-2">
-          <button (click)="unenroll(section)" class="btn btn-primary">Unenroll</button>
+          <button (click)="unenroll(section)" class="btn btn-danger">Unenroll</button>
         </div>
       </div>
     </li>

@@ -12,6 +12,8 @@ import {EnrollmentServiceClient} from '../services/enrollment.service.client';
 export class ProfileComponent implements OnInit {
 
   currentUser: User = <User>{};
+  newPassword: String = '';
+  newPasswordConfirm: String = '';
 
   constructor(private router: Router,
               private userServiceClient: UserServiceClient,
@@ -49,15 +51,35 @@ export class ProfileComponent implements OnInit {
 
   updateProfile() {
     this.userServiceClient.updateProfile(this.currentUser)
-      .then(newUser => {
-        this.currentUser = newUser;
-        alert('User information updated');
+      .then(user => {
+        if (user) {
+          this.fetchData();
+          return alert('User information updated');
+        } else {
+          return alert('Failed to update user information');
+        }
       });
   }
 
   unenroll(section) {
     this.enrollmentServiceClient.unenroll(this.currentUser, section)
       .then(this.fetchData);
+  }
+
+  changePassword() {
+    if (this.newPassword.length < 4 || this.newPassword !== this.newPasswordConfirm) {
+      return alert('Ensure passwords match');
+    }
+    this.userServiceClient.updatePassword({_id: this.currentUser._id, password: this.newPassword})
+      .then(result => {
+        if (result) {
+          this.newPassword = '';
+          this.newPasswordConfirm = '';
+          return alert('Password changed');
+        } else {
+          return alert('Password failed to change');
+        }
+      });
   }
 
 }

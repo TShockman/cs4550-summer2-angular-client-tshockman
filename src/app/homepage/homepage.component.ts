@@ -3,6 +3,7 @@ import {CourseServiceClient} from '../services/course.service.client';
 import {UserServiceClient} from '../services/user.service.client';
 import {Router} from '@angular/router';
 import {Course, User} from '../app.types';
+import {EnrollmentServiceClient} from '../services/enrollment.service.client';
 
 @Component({
   selector: 'app-homepage',
@@ -14,9 +15,11 @@ export class HomepageComponent implements OnInit {
   currentUser: User = null;
   courses: Array<Course> = [];
 
-  constructor(private courseServiceClient: CourseServiceClient, private userServiceClient: UserServiceClient, private router: Router) { }
+  constructor(private courseServiceClient: CourseServiceClient,
+              private userServiceClient: UserServiceClient,
+              private enrollmentServiceClient: EnrollmentServiceClient) { }
 
-  ngOnInit() {
+  fetchData = () => {
     this.userServiceClient.getProfile()
       .then(user => {
         if (user) {
@@ -27,6 +30,15 @@ export class HomepageComponent implements OnInit {
       .then(courses => {
         this.courses = courses;
       });
+  }
+
+  ngOnInit() {
+    this.fetchData();
+  }
+
+  unenroll(section) {
+    this.enrollmentServiceClient.unenroll(this.currentUser, section)
+      .then(this.fetchData);
   }
 
 }

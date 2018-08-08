@@ -28,5 +28,11 @@ export class LoginComponent implements OnInit {
       password: this.password
     };
     this.userServiceClient.login(user)
-      .then(u => this.router.navigate(['profile']));  }
+      .then(u => {
+        if (u) {
+          this.router.navigate(['profile'])
+        } else {
+          return alert('Login failed');
+        }
+      });  }
 }

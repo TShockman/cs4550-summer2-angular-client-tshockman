@@ -2,7 +2,7 @@
 
 <br/>
 
-<div *ngIf="currentUser && currentUser.role === 'STUDENT' && course && course.id">
+<div *ngIf="currentUser && course && course.id">
   <div class="row">
     <div class="col">
       <a routerLink="/course/{{course.id}}/sections" class="btn btn-primary">View Sections</a>
