@@ -24,6 +24,11 @@ import { WidgetParagraphComponent } from './widget-paragraph/widget-paragraph.co
 import { WidgetListComponent } from './widget-list/widget-list.component';
 import { WidgetLinkComponent } from './widget-link/widget-link.component';
 import { WidgetImgComponent } from './widget-img/widget-img.component';
+import { QuizzesComponent } from './quizzes/quizzes.component';
+import {QuizServiceClient} from './services/quiz.service.client';
+import { QuizComponent } from './quiz/quiz.component';
+import { QuizAnswersComponent } from './quiz-answers/quiz-answers.component';
+import {SubmissionServiceClient} from './services/submission.service.client';
 
 @NgModule({
   declarations: [
@@ -40,7 +45,10 @@ import { WidgetImgComponent } from './widget-img/widget-img.component';
     WidgetParagraphComponent,
     WidgetListComponent,
     WidgetLinkComponent,
-    WidgetImgComponent
+    WidgetImgComponent,
+    QuizzesComponent,
+    QuizComponent,
+    QuizAnswersComponent
   ],
   imports: [
     routing,
@@ -54,7 +62,9 @@ import { WidgetImgComponent } from './widget-img/widget-img.component';
     EnrollmentServiceClient,
     ModuleServiceClient,
     LessonServiceClient,
-    WidgetServiceClient
+    WidgetServiceClient,
+    QuizServiceClient,
+    SubmissionServiceClient
   ],
   bootstrap: [AppComponent]
 })

@@ -1,0 +1,76 @@
+<ng-container *ngIf="quiz">
+
+  <h2>{{quiz.title}}</h2>
+
+  <ul class="list-group">
+    <li *ngFor="let question of quiz.questions; let i = index"
+        class="list-group-item"
+    >
+      <ng-container [ngSwitch]="question.questionType">
+        <ng-container *ngSwitchCase="'ESSAY'">
+          <h4>Question {{i+1}}: {{question.title}} <small class="float-right">{{'' + question.points + ' point' + (question.points !== 1 ? 's' : '')}}</small></h4>
+          <p>{{question.description}}</p>
+          <textarea [(ngModel)]="answers[question._id].essayAnswer"></textarea>
+        </ng-container>
+
+        <ng-container *ngSwitchCase="'TRUE_FALSE'">
+          <h4>Question {{i+1}}: {{question.title}} <small class="float-right">{{'' + question.points + ' point' + (question.points !== 1 ? 's' : '')}}</small></h4>
+          <p>{{question.description}}</p>
+          <form class="list-group">
+            <label class="list-group-item" [ngClass]="{active: answers[question._id].tfAnswer === true}">
+              <input [(ngModel)]="answers[question._id].tfAnswer"
+                     type="radio"
+                     [value]="true"
+                     name="{{question._id}}"
+              />
+              True
+            </label>
+            <label class="list-group-item" [ngClass]="{active: answers[question._id].tfAnswer === false}">
+              <input [(ngModel)]="answers[question._id].tfAnswer"
+                     type="radio"
+                     [value]="false"
+                     name="{{question._id}}"
+              />
+              False
+            </label>
+          </form>
+        </ng-container>
+
+        <ng-container *ngSwitchCase="'CHOICE'">
+          <h4>Question {{i+1}}: {{question.title}} <small class="float-right">{{'' + question.points + ' point' + (question.points !== 1 ? 's' : '')}}</small></h4>
+          <p>{{question.description}}</p>
+          <form class="list-group">
+            <label *ngFor="let choice of question.choices; let ii = index"
+                   class="list-group-item"
+                   [ngClass]="{active: answers[question._id].mcAnswer === choice.text}">
+              <input [(ngModel)]="answers[question._id].mcAnswer"
+                     type="radio"
+                     [value]="choice.text"
+                     name="{{question._id}}"
+              />
+              {{choice.text}}
+            </label>
+          </form>
+        </ng-container>
+
+        <ng-container *ngSwitchCase="'FILL_BLANKS'">
+          <h4>Question {{i+1}}: {{question.title}} <small class="float-right">{{'' + question.points + ' point' + (question.points !== 1 ? 's' : '')}}</small></h4>
+          <p>{{question.description.split("###")[0]}}</p>
+          <form>
+            <ng-container *ngFor="let textChunk of question.description.split('###')[1].split('[@]'); let iii = index">
+              {{textChunk}}
+              <input *ngIf="iii < question.blanks.length"
+                     name="{{question.id + '_fitb_' + iii}}"
+                     type="text"
+                     [(ngModel)]="answers[question._id].fitbAnswers[iii]"/>
+            </ng-container>
+          </form>
+        </ng-container>
+      </ng-container>
+    </li>
+  </ul>
+
+  <a class="btn btn-danger" routerLink="/quizzes">Cancel</a>
+  <button class="btn btn-success" (click)="submit()">Submit</button>
+
+</ng-container>

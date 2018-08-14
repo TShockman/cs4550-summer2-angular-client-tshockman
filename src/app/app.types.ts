@@ -21,7 +21,7 @@ export interface User {
   phone: String;
   email: String;
   address: String;
-  sections: Array<Section>;
+  sections: Section[];
 }
 
 export interface Module {
@@ -44,4 +44,38 @@ export interface Widget {
   href: String;
   src: String;
   listType: String;
+}
+
+export interface Question {
+  _id: String;
+  title: String;
+  points: Number;
+  description: String;
+  choices: {text: String, correct: Boolean}[];
+  blanks: String[];
+  isTrue: Boolean;
+  questionType: String;
+}
+
+export interface Quiz {
+  _id: String;
+  title: String;
+  questions: String[] & Question[];
+}
+
+export interface Answer {
+  _id: String;
+  question: String | Question;
+  tfAnswer: Boolean;
+  mcAnswer: String;
+  essayAnswer: String;
+  fitbAnswers: String[];
+}
+
+export interface Submission {
+  _id: String;
+  quiz: String & Quiz;
+  student: String & User;
+  answers: String[] & Answer[];
+  submitted: Date;
 }

@@ -13,7 +13,7 @@ import {EnrollmentServiceClient} from '../services/enrollment.service.client';
 export class HomepageComponent implements OnInit {
 
   currentUser: User = null;
-  courses: Array<Course> = [];
+  courses: Course[] = [];
 
   constructor(private courseServiceClient: CourseServiceClient,
               private userServiceClient: UserServiceClient,

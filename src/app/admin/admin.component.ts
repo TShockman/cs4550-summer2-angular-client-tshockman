@@ -11,9 +11,9 @@ import {UserServiceClient} from '../services/user.service.client';
   styleUrls: ['./admin.component.css']
 })
 export class AdminComponent implements OnInit {
-  courses: Array<Course> = [];
+  courses: Course[] = [];
   selectedCourse: Course = <Course>{};
-  sections: Array<Section> = [];
+  sections: Section[] = [];
   selectedSection: Section = <Section>{};
   newSectionTitle: String = '';
   newMaxEnrollment: String = '';

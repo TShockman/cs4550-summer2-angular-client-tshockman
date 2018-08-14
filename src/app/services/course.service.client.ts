@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import {COURSE_API_URL, parseResponse} from './api-constants';
+import {Course} from '../app.types';
 
 @Injectable()
 export class CourseServiceClient {

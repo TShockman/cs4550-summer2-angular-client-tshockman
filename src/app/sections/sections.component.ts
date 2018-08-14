@@ -11,7 +11,7 @@ import {EnrollmentServiceClient} from '../services/enrollment.service.client';
   styleUrls: ['./sections.component.css']
 })
 export class SectionsComponent implements OnInit {
-  sections: Array<Section> = null;
+  sections: Section[] = null;
   currentUser: User = null;
   courseId: Number = null;
 

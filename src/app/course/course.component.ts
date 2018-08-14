@@ -16,12 +16,12 @@ import {WidgetServiceClient} from '../services/widget.service.client';
 export class CourseComponent implements OnInit {
   course: Course = <Course>{};
   currentUser: User = null;
-  sections: Array<Section> = [];
-  modules: Array<Module> = [];
+  sections: Section[] = [];
+  modules: Module[] = [];
   selectedModuleId: String = null;
-  lessons: Array<Lesson> = [];
+  lessons: Lesson[] = [];
   selectedLessonId: String = null;
-  widgets: Array<Widget> = [];
+  widgets: Widget[] = [];
 
   constructor(private courseServiceClient: CourseServiceClient,
               private activatedRoute: ActivatedRoute,
