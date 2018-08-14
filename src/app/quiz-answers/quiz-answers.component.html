@@ -15,7 +15,7 @@
         <ng-container *ngSwitchCase="'ESSAY'">
           <h4>Question {{i+1}}: {{answer.question.title}} <small class="float-right">{{'' + answer.question.points + ' point' + (answer.question.points !== 1 ? 's' : '')}}</small></h4>
           <p>{{answer.question.description}}</p>
-          <textarea [(ngModel)]="answer.essayAnswer" disabled></textarea>
+          <textarea class="essay" [(ngModel)]="answer.essayAnswer" disabled></textarea>
         </ng-container>
 
         <ng-container *ngSwitchCase="'TRUE_FALSE'">
@@ -53,7 +53,7 @@
               <input *ngIf="iii < answer.question.blanks.length"
                      name="{{answer.question.id + '_fitb_' + iii}}"
                      type="text"
-                     [(ngModel)]="answer.fitbAnswers[iii]"
+                     [ngModel]="answer.fitbAnswers[iii].toUpperCase()"
                      disabled/>
             </ng-container>
             <ng-container *ngIf="!gradedAnswers[i].correct">
@@ -65,7 +65,7 @@
                 <input *ngIf="iii < answer.question.blanks.length"
                        name="{{answer.question.id + '_fitb_' + iii}}"
                        type="text"
-                       [(ngModel)]="answer.question.blanks[iii]"
+                       [ngModel]="answer.question.blanks[iii].toUpperCase()"
                        disabled/>
               </ng-container>
             </ng-container>

@@ -10,7 +10,7 @@
         <ng-container *ngSwitchCase="'ESSAY'">
           <h4>Question {{i+1}}: {{question.title}} <small class="float-right">{{'' + question.points + ' point' + (question.points !== 1 ? 's' : '')}}</small></h4>
           <p>{{question.description}}</p>
-          <textarea [(ngModel)]="answers[question._id].essayAnswer"></textarea>
+          <textarea class="essay" [(ngModel)]="answers[question._id].essayAnswer"></textarea>
         </ng-container>
 
         <ng-container *ngSwitchCase="'TRUE_FALSE'">

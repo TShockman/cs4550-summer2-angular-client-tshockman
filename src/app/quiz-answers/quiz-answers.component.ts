@@ -49,7 +49,7 @@ export class QuizAnswersComponent implements OnInit {
               let allTrue = true;
               for (let i = 0; i < gradedAnswer.question.blanks.length; i++) {
                 console.log(gradedAnswer.question.blanks[i], '===', gradedAnswer.fitbAnswers[i])
-                allTrue = allTrue && gradedAnswer.question.blanks[i] === gradedAnswer.fitbAnswers[i];
+                allTrue = allTrue && gradedAnswer.question.blanks[i].toUpperCase() === gradedAnswer.fitbAnswers[i].toUpperCase();
               }
               if (allTrue) {
                 gradedAnswer.correct = true;
