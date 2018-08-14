@@ -1,81 +1,81 @@
 export interface Course {
-  id: String;
-  title: String;
+  id: string;
+  title: string;
 }
 
 export interface Section {
-  _id: String;
-  courseId: String;
-  maxEnrollment: Number;
-  freeSeats: Number;
-  title: String;
+  _id: string;
+  courseId: string;
+  maxEnrollment: number;
+  freeSeats: number;
+  title: string;
 }
 
 export interface User {
-  _id: String;
-  username: String;
-  password: String;
-  firstName: String;
-  lastName: String;
-  role: String;
-  phone: String;
-  email: String;
-  address: String;
+  _id: string;
+  username: string;
+  password: string;
+  firstName: string;
+  lastName: string;
+  role: string;
+  phone: string;
+  email: string;
+  address: string;
   sections: Section[];
 }
 
 export interface Module {
-  id: String;
-  title: String;
+  id: string;
+  title: string;
 }
 
 export interface Lesson {
-  id: String;
-  title: String;
+  id: string;
+  title: string;
 }
 
 export interface Widget {
-  id: String;
-  name: String;
-  ordering: Number;
-  text: String;
-  type: String;
-  size: Number;
-  href: String;
-  src: String;
-  listType: String;
+  id: string;
+  name: string;
+  ordering: number;
+  text: string;
+  type: string;
+  size: number;
+  href: string;
+  src: string;
+  listType: string;
 }
 
 export interface Question {
-  _id: String;
-  title: String;
-  points: Number;
-  description: String;
-  choices: {text: String, correct: Boolean}[];
-  blanks: String[];
-  isTrue: Boolean;
-  questionType: String;
+  _id: string;
+  title: string;
+  points: number;
+  description: string;
+  choices: {text: string, correct: boolean}[];
+  blanks: string[];
+  isTrue: boolean;
+  questionType: string;
 }
 
 export interface Quiz {
-  _id: String;
-  title: String;
-  questions: String[] & Question[];
+  _id: string;
+  title: string;
+  questions: (string & Question)[];
 }
 
 export interface Answer {
-  _id: String;
-  question: String | Question;
-  tfAnswer: Boolean;
-  mcAnswer: String;
-  essayAnswer: String;
-  fitbAnswers: String[];
+  _id: string;
+  question: string & Question;
+  tfAnswer: boolean;
+  mcAnswer: string;
+  essayAnswer: string;
+  fitbAnswers: string[];
 }
 
 export interface Submission {
-  _id: String;
-  quiz: String & Quiz;
-  student: String & User;
-  answers: String[] & Answer[];
+  _id: string;
+  quiz: string & Quiz;
+  student: string & User;
+  answers: (string & Answer)[];
   submitted: Date;
 }
