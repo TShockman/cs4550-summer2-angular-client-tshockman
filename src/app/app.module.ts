@@ -29,6 +29,7 @@ import {QuizServiceClient} from './services/quiz.service.client';
 import { QuizComponent } from './quiz/quiz.component';
 import { QuizAnswersComponent } from './quiz-answers/quiz-answers.component';
 import {SubmissionServiceClient} from './services/submission.service.client';
+import { QuizSubmissionsComponent } from './quiz-submissions/quiz-submissions.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import {SubmissionServiceClient} from './services/submission.service.client';
     WidgetImgComponent,
     QuizzesComponent,
     QuizComponent,
-    QuizAnswersComponent
+    QuizAnswersComponent,
+    QuizSubmissionsComponent
   ],
   imports: [
     routing,

@@ -1,0 +1,14 @@
+<ng-container *ngIf="submissions">
+  <h3 *ngIf="!submissions.length">No submissions.</h3>
+
+  <ul class="list-group">
+    <li *ngFor="let submission of submissions" class="list-group-item">
+      <div class="row">
+        <div class="col"><strong>{{submission.student.username}}</strong></div>
+        <div class="col">{{submission.submitted | date: 'medium'}}</div>
+        <div class="col"><a routerLink="{{submission._id}}" class="btn btn-primary">View</a></div>
+      </div>
+    </li>
+  </ul>
+</ng-container>
+

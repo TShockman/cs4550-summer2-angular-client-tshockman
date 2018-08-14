@@ -21,4 +21,9 @@ export class SubmissionServiceClient {
       .then(parseResponse);
   }
 
+  getSubmissionsForQuiz(qid) {
+    return fetch(`${QUIZ_API_URL}/${qid}/submission`)
+      .then(parseResponse);
+  }
+
 }
