@@ -11,7 +11,7 @@ import {ActivatedRoute} from '@angular/router';
 export class QuizAnswersComponent implements OnInit {
 
   submission: Submission = null;
-  gradedAnswers: object[] = [];
+  gradedAnswers: any[] = [];
   earnedPoints = 0;
   totalPoints = 0;
 

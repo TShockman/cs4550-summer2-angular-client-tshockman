@@ -1,5 +1,5 @@
-//export const NODE_API_URL = 'https://course-manager-shockman-node.herokuapp.com/api';
-export const NODE_API_URL = 'http://localhost:3001/api';
+export const NODE_API_URL = 'https://course-manager-shockman-node.herokuapp.com/api';
+//export const NODE_API_URL = 'http://localhost:3001/api';
 export const USER_API_URL = `${NODE_API_URL}/user`;
 export const REGISTER_API_URL = `${NODE_API_URL}/register`;
 export const LOGIN_API_URL = `${NODE_API_URL}/login`;
