@@ -62,7 +62,8 @@
               <input *ngIf="iii < question.blanks.length"
                      name="{{question.id + '_fitb_' + iii}}"
                      type="text"
-                     [(ngModel)]="answers[question._id].fitbAnswers[iii]"/>
+                     [(ngModel)]="answers[question._id].fitbAnswers[iii]"
+              />
             </ng-container>
           </form>
         </ng-container>

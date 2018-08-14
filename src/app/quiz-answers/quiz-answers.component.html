@@ -1,3 +1,78 @@
-<p>
-  quiz-answers works!
-</p>
+<ng-container *ngIf="submission && submission.answers">
+
+  <div class="row">
+    <div class="col"><h2><strong>{{submission.quiz.title}}</strong></h2></div>
+    <div class="col"><h2>{{submission.student.username}}</h2></div>
+    <div class="col"><h2>{{submission.submitted | date: 'medium'}}</h2></div>
+    <div class="col"><h2>{{earnedPoints}}/{{totalPoints}}</h2></div>
+  </div>
+
+  <ul class="list-group">
+    <li *ngFor="let answer of submission.answers; let i = index"
+        class="list-group-item"
+        [ngClass]="{'correct-q': gradedAnswers[i].correct, 'incorrect-q': !gradedAnswers[i].correct}">
+      <ng-container [ngSwitch]="answer.question.questionType">
+        <ng-container *ngSwitchCase="'ESSAY'">
+          <h4>Question {{i+1}}: {{answer.question.title}} <small class="float-right">{{'' + answer.question.points + ' point' + (answer.question.points !== 1 ? 's' : '')}}</small></h4>
+          <p>{{answer.question.description}}</p>
+          <textarea [(ngModel)]="answer.essayAnswer" disabled></textarea>
+        </ng-container>
+
+        <ng-container *ngSwitchCase="'TRUE_FALSE'">
+          <h4>Question {{i+1}}: {{answer.question.title}} <small class="float-right">{{'' + answer.question.points + ' point' + (answer.question.points !== 1 ? 's' : '')}}</small></h4>
+          <p>{{answer.question.description}}</p>
+          <ul class="list-group">
+            <li class="list-group-item" [ngClass]="{'correct-a': answer.question.isTrue, 'incorrect-a': answer.tfAnswer && !answer.question.isTrue}">
+              True
+            </li>
+            <li class="list-group-item" [ngClass]="{'correct-a': !answer.question.isTrue, 'incorrect-a': !answer.tfAnswer && answer.question.isTrue}">
+              False
+            </li>
+          </ul>
+        </ng-container>
+
+        <ng-container *ngSwitchCase="'CHOICE'">
+          <h4>Question {{i+1}}: {{answer.question.title}} <small class="float-right">{{'' + answer.question.points + ' point' + (answer.question.points !== 1 ? 's' : '')}}</small></h4>
+          <p>{{answer.question.description}}</p>
+          <ul class="list-group">
+            <li *ngFor="let choice of answer.question.choices; let ii = index"
+                   class="list-group-item"
+                   [ngClass]="{'correct-a': choice.text === gradedAnswers[i].correctChoice, 'incorrect-a': answer.mcAnswer === choice.text && choice.text !== gradedAnswers[i].correctChoice}">
+              {{choice.text}}
+            </li>
+          </ul>
+        </ng-container>
+
+        <ng-container *ngSwitchCase="'FILL_BLANKS'">
+          <h4>Question {{i+1}}: {{answer.question.title}} <small class="float-right">{{'' + answer.question.points + ' point' + (answer.question.points !== 1 ? 's' : '')}}</small></h4>
+          <p>{{answer.question.description.split("###")[0]}}</p>
+          <form>
+            Your answer:
+            <ng-container *ngFor="let textChunk of answer.question.description.split('###')[1].split('[@]'); let iii = index">
+              {{textChunk}}
+              <input *ngIf="iii < answer.question.blanks.length"
+                     name="{{answer.question.id + '_fitb_' + iii}}"
+                     type="text"
+                     [(ngModel)]="answer.fitbAnswers[iii]"
+                     disabled/>
+            </ng-container>
+            <ng-container *ngIf="!gradedAnswers[i].correct">
+              <br/>
+              <br/>
+              Correct answer:
+              <ng-container *ngFor="let textChunk of answer.question.description.split('###')[1].split('[@]'); let iii = index">
+                {{textChunk}}
+                <input *ngIf="iii < answer.question.blanks.length"
+                       name="{{answer.question.id + '_fitb_' + iii}}"
+                       type="text"
+                       [(ngModel)]="answer.question.blanks[iii]"
+                       disabled/>
+              </ng-container>
+            </ng-container>
+          </form>
+        </ng-container>
+      </ng-container>
+    </li>
+  </ul>
+
+</ng-container>

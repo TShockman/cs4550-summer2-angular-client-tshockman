@@ -1,0 +1,15 @@
+.incorrect-q {
+  background-color: lightcoral;
+}
+
+.correct-q {
+  background-color: lightgreen;
+}
+
+.correct-a {
+  background-color: lightgreen;
+}
+
+.incorrect-a {
+  background-color: red;
+}
