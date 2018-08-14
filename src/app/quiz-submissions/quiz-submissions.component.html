@@ -1,8 +1,12 @@
-<ng-container *ngIf="submissions">
+<ng-container *ngIf="submissions && user">
   <h3 *ngIf="!submissions.length">No submissions.</h3>
 
   <ul class="list-group">
-    <li *ngFor="let submission of submissions" class="list-group-item">
+    <li *ngIf="user.role === 'ADMIN'" class="list-group-item">
+      <label for="filter">Filter: </label>
+      <input type="text" id="filter" [(ngModel)]="filter"/>
+    </li>
+    <li *ngFor="let submission of submissions.filter(this.studentFilter)" class="list-group-item">
       <div class="row">
         <div class="col"><strong>{{submission.student.username}}</strong></div>
         <div class="col">{{submission.submitted | date: 'medium'}}</div>

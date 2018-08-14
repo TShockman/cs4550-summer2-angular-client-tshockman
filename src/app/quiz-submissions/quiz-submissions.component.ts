@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {Submission} from '../app.types';
+import {Submission, User} from '../app.types';
 import {ActivatedRoute} from '@angular/router';
 import {SubmissionServiceClient} from '../services/submission.service.client';
+import {UserServiceClient} from '../services/user.service.client';
 
 @Component({
   selector: 'app-quiz-submissions',
@@ -10,10 +11,13 @@ import {SubmissionServiceClient} from '../services/submission.service.client';
 })
 export class QuizSubmissionsComponent implements OnInit {
 
+  user: User = null;
   submissions: Submission[] = null;
+  filter: String = '';
 
   constructor(private activatedRoute: ActivatedRoute,
-              private submissionServiceClient: SubmissionServiceClient) { }
+              private submissionServiceClient: SubmissionServiceClient,
+              private userServiceClient: UserServiceClient) { }
 
   fetchData = () => {
     const qid = this.activatedRoute.snapshot.params['qid'];
@@ -21,10 +25,23 @@ export class QuizSubmissionsComponent implements OnInit {
       .then(submissions => {
         this.submissions = submissions;
       });
+    this.userServiceClient.getProfile()
+      .then(user => {
+        if (user) {
+          if (user.role === 'STUDENT') {
+            this.filter = user.username;
+          }
+          this.user = user;
+        } else {
+          return alert('Please login.')
+        }
+      });
   }
 
   ngOnInit() {
     this.fetchData();
   }
+
+  studentFilter = s => s.student.username.includes(this.filter);
 
 }
